@@ -1,0 +1,14 @@
+[
+    {
+        "model": "techpowerapi.post",
+        "pk": 1,
+        "fields": {
+            "tech_user": 1,
+            "title": "Post Title 1",
+            "publication_date": "2023-01-01",
+            "skills": [1], 
+            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "approved": true
+        }
+    }
+]
