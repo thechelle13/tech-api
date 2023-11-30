@@ -14,11 +14,11 @@ class SkillTests(APITestCase):
         token = Token.objects.get(user=self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f"Token {token.key}")
 
-    def test_create_tag(self):
+    def test_create_skill(self):
         url = "/skills"
 
         data = {
-            "label": "JavaScript"
+            "label": "Git Bash"
         }
 
         response = self.client.post(url, data, format='json')
@@ -27,15 +27,15 @@ class SkillTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        self.assertEqual(json_response["label"], "JavaScript")
-        self.assertEqual(json_response["id"], 4)
+        self.assertEqual(json_response["label"], "Git Bash")
+        self.assertEqual(json_response["id"], 12)
 
     def test_get_skill(self):
         skill = Skill()
         skill.label = "GitHub"
         skill.save()
 
-        response = self.client.get(f"/tags/{skill.id}")
+        response = self.client.get(f"/skills/{skill.id}")
 
         json_response = json.loads(response.content)
 
@@ -43,37 +43,24 @@ class SkillTests(APITestCase):
         self.assertEqual(json_response["label"], "GitHub")
         self.assertEqual(json_response["id"], skill.id)
         
-    def test_get_tags(self):
-        response = self.client.get("/tags")
+    def test_get_skills(self):
+        response = self.client.get("/skills")
 
         json_response = json.loads(response.content)
 
         self.assertEqual(response.status_code,status.HTTP_200_OK)
 
-        self.assertEqual(json_response[0]["label"], "Funny")
-        self.assertEqual(json_response[1]["label"], "Sad")
+        self.assertEqual(json_response[0]["label"], "React")
+        self.assertEqual(json_response[1]["label"], "Django")
 
-    def test_change_tag(self):
-        tag = Skill()
-        tag.label = "Hilarious"
-        tag.save()
+    
 
-        data = {
-            "label": "Not Hilarious"
-        }
-        response = self.client.put(f"/tags/{tag.id}", data, format="json")
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        response = self.client.get(f"/tags/{tag.id}")
-        json_response = json.loads(response.content)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(json_response["label"], "Not Hilarious")
-
-    def test_delete_tag(self):
-        tag = Skill()
-        tag.label = "Hilarious"
-        tag.save()
+    def test_delete_skill(self):
+        skill = Skill()
+        skill.label = "AWS"
+        skill.save()
         
-        response = self.client.delete(f"/tags/{tag.id}")
+        response = self.client.delete(f"/skills/{skill.id}")
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        response = self.client.get(f"/tags/{tag.id}")
+        response = self.client.get(f"/skills/{skill.id}")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
