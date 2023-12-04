@@ -1,0 +1,35 @@
+[
+    {
+      "model": "techpowerapi.techuser",
+      "pk": 1,
+      "fields": {
+        "bio": "",
+        
+        "created_on": "2023-11-21T04:19:18.878Z",
+        "active": true,
+        "user": 1
+      }
+    },
+    {
+      "model": "techpowerapi.techuser",
+      "pk": 2,
+      "fields": {
+        "bio": "m",
+    
+        "created_on": "2023-11-21T05:14:44.231Z",
+        "active": true,
+        "user": 2
+      }
+    },
+    {
+      "model": "techpowerapi.techuser",
+      "pk": 3,
+      "fields": {
+        "bio": "j",
+    
+        "created_on": "2023-11-27T20:35:03.355Z",
+        "active": true,
+        "user": 3
+      }
+    }
+  ]

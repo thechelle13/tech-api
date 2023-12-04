@@ -1,0 +1,51 @@
+[
+    {
+        "model": "techpowerapi.skill", 
+        "pk": 1, 
+        "fields": {
+            "label": "React"
+        }
+    }, 
+    {
+        "model": "techpowerapi.skill", 
+        "pk": 2, 
+        "fields": {
+            "label": "Django"
+        }
+    }, 
+    {
+        "model": "techpowerapi.skill", 
+        "pk": 3, 
+        "fields": {
+            "label": "GitHub"
+        }
+    }, 
+    {
+        "model": "techpowerapi.skill", 
+        "pk": 4, 
+        "fields": {
+            "label": "JavaScript"
+        }
+    }, 
+    {
+        "model": "techpowerapi.skill", 
+        "pk": 6, 
+        "fields": {
+            "label": "HTML"
+        }
+    }, 
+    {    
+        "model": "techpowerapi.skill", 
+        "pk": 7, 
+        "fields": {
+            "label": "CSS"
+        }
+    }, 
+    {
+        "model": "techpowerapi.skill", 
+        "pk": 11, 
+        "fields": {
+            "label": "Zoom"
+        }
+    }
+]
