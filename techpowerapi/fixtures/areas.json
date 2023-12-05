@@ -1,0 +1,23 @@
+[
+    {
+        "model": "techpowerapi.area", 
+        "pk": 1, 
+        "fields": {
+            "label": "Data"
+        }
+    }, 
+    {
+        "model": "techpowerapi.area", 
+        "pk": 2, 
+        "fields": {
+            "label": "WebDev"
+        }
+    }, 
+    {
+        "model": "techpowerapi.area", 
+        "pk": 3, 
+        "fields": {
+            "label": "CyberSecurity"
+        }
+    }
+]
