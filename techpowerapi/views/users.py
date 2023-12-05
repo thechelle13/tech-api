@@ -20,7 +20,7 @@ class TechUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TechUser
-        fields = ("user", "active", "profile_image_url", "bio")
+        fields = ("user", "active",  "bio")
 
 
 class UserViewSet(viewsets.ViewSet):
@@ -41,7 +41,7 @@ class UserViewSet(viewsets.ViewSet):
             tech_user = TechUser.objects.create(
                 user=user,
                 active=True,
-                profile_image_url= request.data.get("profile_image_url"),
+                
                 bio= request.data.get("bio"),
             )
             token, created = Token.objects.get_or_create(user=user)
