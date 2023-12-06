@@ -3,21 +3,28 @@
         "model": "techpowerapi.area", 
         "pk": 1, 
         "fields": {
-            "label": "Data"
+            "label": "Data Science"
         }
     }, 
     {
         "model": "techpowerapi.area", 
         "pk": 2, 
         "fields": {
-            "label": "WebDev"
+            "label": "Software or Web Developement"
         }
     }, 
     {
         "model": "techpowerapi.area", 
         "pk": 3, 
         "fields": {
-            "label": "CyberSecurity"
+            "label": "Cyber Security"
+        }
+    }, 
+    {
+        "model": "techpowerapi.area", 
+        "pk": 4, 
+        "fields": {
+            "label": "Software Engineering"
         }
     }
 ]
