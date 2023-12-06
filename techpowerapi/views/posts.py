@@ -1,7 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework import serializers
-from techpowerapi.models import Post, TechUser
+from techpowerapi.models import Post, TechUser, Area
 from django.contrib.auth.models import User
 from .skills import SkillSerializer
 from .users import TechUserSerializer
@@ -35,7 +35,7 @@ class PostSerializer(serializers.ModelSerializer):
     tech_user = TechUserSerializer(many=False)
     is_owner = serializers.SerializerMethodField()
     skills = SkillSerializer(many=True)
-   
+    area = serializers.PrimaryKeyRelatedField(queryset=Area.objects.all())
 
     def get_is_owner(self, obj):
         # Check if the authenticated user is the owner
@@ -80,8 +80,14 @@ class PostViewSet(viewsets.ViewSet):
         # image_url = request.data.get("image_url")
         content = request.data.get("content")
         approved = request.data.get("approved")
-        area = request.data.get("area")
+        area_id = request.data.get("area")
 
+        try:
+            area = Area.objects.get(pk=area_id)
+        except Area.DoesNotExist:
+            return Response({"error": "Invalid area specified"}, status=status.HTTP_400_BAD_REQUEST)
+
+        
         # Create a post database row first, so you have a
         # primary key to work with
         post = Post.objects.create(
@@ -94,7 +100,7 @@ class PostViewSet(viewsets.ViewSet):
             approved=approved,
             area=area,
         )
-
+        
         # Establish the many-to-many relationships
         skill_ids = request.data.get("skills", [])
         post.skills.set(skill_ids)
@@ -111,7 +117,6 @@ class PostViewSet(viewsets.ViewSet):
 
             serializer = SimplePostSerializer(data=request.data)
             if serializer.is_valid():
-                # post.tech_user = serializer.validated_data["tech_user"]
                 
                 post.title = serializer.validated_data["title"]
                 # post.publication_date = serializer.validated_data["publication_date"]
