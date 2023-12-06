@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
-from techpowerapi.models import Areas
+from techpowerapi.models import Area
 
 class AreaTests(APITestCase):
 
