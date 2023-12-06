@@ -21,11 +21,13 @@ from techpowerapi.views import (
     PostViewSet,
     UserViewSet,
     SkillViewSet,
+    AreaViewSet,
 )
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r"posts", PostViewSet, "post")
 router.register(r"skills", SkillViewSet, "skills")
+router.register(r"areas", AreaViewSet, "areas")
 
 urlpatterns = [
     path("", include(router.urls)),

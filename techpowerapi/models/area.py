@@ -5,4 +5,4 @@ class Area(models.Model):
     """Database model for tracking events"""
 
     
-    label = models.CharField(max_length=200)
+    label = models.CharField(max_length=50)

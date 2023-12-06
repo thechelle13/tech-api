@@ -12,14 +12,14 @@ class AreaSerializer(serializers.ModelSerializer):
 
 class AreaViewSet(viewsets.ViewSet):
     def list(self, request):
-        skills = Area.objects.all()
-        serializer = AreaSerializer(skills, many=True)
+        areas = Area.objects.all()
+        serializer = AreaSerializer(areas, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         try:
-            skill = Area.objects.get(pk=pk)
-            serializer = AreaSerializer(skill)
+            area = Area.objects.get(pk=pk)
+            serializer = AreaSerializer(area)
             return Response(serializer.data)
         except Area.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)

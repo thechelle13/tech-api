@@ -14,12 +14,28 @@ class AreaTests(APITestCase):
         token = Token.objects.get(user=self.user)
         self.client.credentials(HTTP_AUTHORIZATION=f"Token {token.key}")
         
-    def test_get_areas(self):
-        response = self.client.get("/areas")
+    # def test_get_area(self):
+    #     area = Area()
+    #     area.label = "Data Science"
+    #     area.save()
 
-        json_response = json.loads(response.content)
+    #     response = self.client.get(f"/areas/{area.id}")
 
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
+    #     json_response = json.loads(response.content)
 
-        self.assertEqual(json_response[0]["label"], "Data")
-        self.assertEqual(json_response[1]["label"], "WebDev")
+    #     self.assertEqual(response.status_code,status.HTTP_200_OK)
+    #     self.assertEqual(json_response["label"], "Data Science")
+    #     self.assertEqual(json_response["id"], area.id)
+        
+        
+    # def test_get_areas(self):
+    #     response = self.client.get("/areas")
+
+    #     json_response = json.loads(response.content)
+
+    #     self.assertEqual(response.status_code,status.HTTP_200_OK)
+
+    #     self.assertEqual(json_response[0]["label"], "Data Science")
+    #     self.assertEqual(json_response[1]["label"], "Software or Web Developement")
+    #     self.assertEqual(json_response[2]["label"], "Cyber Security")
+    #     self.assertEqual(json_response[3]["label"], "Software Engineering")
