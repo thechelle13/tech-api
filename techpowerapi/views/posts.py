@@ -10,6 +10,8 @@ from .users import TechUserSerializer
 
 
 class SimplePostSerializer(serializers.ModelSerializer):
+    
+    
     # is_owner = serializers.SerializerMethodField()
 
     # def get_is_owner(self, obj):
@@ -24,7 +26,7 @@ class SimplePostSerializer(serializers.ModelSerializer):
             "tech_user",
             "content",
             "approved",
-           
+            "area",
             # "is_owner",
         ]
 
@@ -48,6 +50,7 @@ class PostSerializer(serializers.ModelSerializer):
             "publication_date",
             "content",
             "approved",
+            "area",
             "skills",
             "is_owner",
         ]
@@ -77,6 +80,7 @@ class PostViewSet(viewsets.ViewSet):
         # image_url = request.data.get("image_url")
         content = request.data.get("content")
         approved = request.data.get("approved")
+        area = request.data.get("area")
 
         # Create a post database row first, so you have a
         # primary key to work with
@@ -88,6 +92,7 @@ class PostViewSet(viewsets.ViewSet):
             # image_url=image_url,
             content=content,
             approved=approved,
+            area=area,
         )
 
         # Establish the many-to-many relationships
@@ -113,6 +118,7 @@ class PostViewSet(viewsets.ViewSet):
                 # post.image_url = serializer.validated_data["image_url"]
                 post.content = serializer.validated_data["content"]
                 post.approved = serializer.validated_data["approved"]
+                post.approved = serializer.validated_data["area"]
                 post.save()
 
                 skill_ids = request.data.get("skills", [])

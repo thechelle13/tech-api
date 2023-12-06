@@ -28,6 +28,7 @@
 #             "content": "Here is the content for test post",
 #             "approved": True,
 #             "skills": [2, 3],
+            # "area": 1,
 #         }
 
 #         response = self.client.post(url, data, format='json')

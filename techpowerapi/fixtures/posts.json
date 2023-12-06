@@ -8,7 +8,8 @@
             "publication_date": "2023-01-01",
             "skills": [1], 
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "approved": true
+            "approved": true,
+            "area": 1
         }
     }
 ]
