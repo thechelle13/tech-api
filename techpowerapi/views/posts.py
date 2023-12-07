@@ -5,6 +5,8 @@ from techpowerapi.models import Post, TechUser, Area
 from django.contrib.auth.models import User
 from .skills import SkillSerializer
 from .users import TechUserSerializer
+from .areas import AreaSerializer
+
 
 
 
@@ -35,7 +37,8 @@ class PostSerializer(serializers.ModelSerializer):
     tech_user = TechUserSerializer(many=False)
     is_owner = serializers.SerializerMethodField()
     skills = SkillSerializer(many=True)
-    area = serializers.PrimaryKeyRelatedField(queryset=Area.objects.all())
+    area = AreaSerializer(many=False)
+    # area = serializers.PrimaryKeyRelatedField(queryset=Area.objects.all())
 
     def get_is_owner(self, obj):
         # Check if the authenticated user is the owner
@@ -81,11 +84,13 @@ class PostViewSet(viewsets.ViewSet):
         content = request.data.get("content")
         approved = request.data.get("approved")
         area_id = request.data.get("area")
+        area = Area.objects.get(pk=area_id)
+       
 
-        try:
-            area = Area.objects.get(pk=area_id)
-        except Area.DoesNotExist:
-            return Response({"error": "Invalid area specified"}, status=status.HTTP_400_BAD_REQUEST)
+        # try:
+        #     area = Area.objects.get(pk=area_id)
+        # except Area.DoesNotExist:
+        #     return Response({"error": "Invalid area specified"}, status=status.HTTP_400_BAD_REQUEST)
 
         
         # Create a post database row first, so you have a
