@@ -5,6 +5,8 @@
         "fields": {
             "tech_user": 1,
             "title": "Post Title 1",
+            "image_url": "https://example.com/image1.jpg",
+            "affliate": "Company Name or Cohort.",
             "publication_date": "2023-01-01",
             "skills": [1], 
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

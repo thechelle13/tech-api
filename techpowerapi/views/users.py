@@ -37,6 +37,7 @@ class UserViewSet(viewsets.ViewSet):
                 first_name=serializer.validated_data["first_name"],
                 last_name=serializer.validated_data["last_name"],
                 email=serializer.validated_data["username"],
+                #email=serializer.validated_data["email"],
             )
             tech_user = TechUser.objects.create(
                 user=user,

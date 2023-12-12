@@ -24,11 +24,12 @@
            
 #             "title": "New Test Post",
 #             "publication_date": "2023-03-01",
-#             # "image_url": "http://www.testimage.jpeg",
+#             "image_url": "http://www.testimage.jpeg",
 #             "content": "Here is the content for test post",
+#             "affliate": "Company or Cohort",
 #             "approved": True,
 #             "skills": [2, 3],
-            # "area": 1,
+#             "area": 1,
 #         }
 
 #         response = self.client.post(url, data, format='json')
@@ -39,7 +40,8 @@
 
 #         self.assertEqual(json_response["tech_user"]["user"]["id"], self.user.id)
 #         self.assertEqual(json_response["title"], "New Test Post")
-#         # self.assertEqual(json_response["image_url"], "http://www.testimage.jpeg")
+#         self.assertEqual(json_response["image_url"], "http://www.testimage.jpeg")
+#         self.assertEqual(json_response["affliate"], "Company or Cohort")
 #         self.assertEqual(json_response["content"], "Here is the content for test post")
 #         self.assertEqual(json_response["approved"], True)
 #         self.assertEqual(json_response["skills"], [{'id': 2, 'label': 'Python'}, {'id': 3, 'label': 'React'}])
@@ -53,5 +55,5 @@
 #         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 #         self.assertEqual(json_response[0]["title"], "Post Title 1")
-#         self.assertEqual(json_response[1]["title"], "Post Title 2")
-#         self.assertEqual(json_response[2]["title"], "Post Title 3")
+#         # self.assertEqual(json_response[1]["title"], "Post Title 2")
+#         # self.assertEqual(json_response[2]["title"], "Post Title 3")
