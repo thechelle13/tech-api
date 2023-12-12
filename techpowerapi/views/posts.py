@@ -25,6 +25,8 @@ class SimplePostSerializer(serializers.ModelSerializer):
         fields = [
             "skills",
             "title",
+            "image_url",
+            "affliate",
             "tech_user",
             "content",
             "approved",
@@ -38,7 +40,7 @@ class PostSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     skills = SkillSerializer(many=True)
     area = AreaSerializer(many=False)
-    # area = serializers.PrimaryKeyRelatedField(queryset=Area.objects.all())
+
 
     def get_is_owner(self, obj):
         # Check if the authenticated user is the owner
@@ -50,6 +52,8 @@ class PostSerializer(serializers.ModelSerializer):
             "id",
             "tech_user",
             "title",
+            "image_url",
+            "affliate",
             "publication_date",
             "content",
             "approved",
@@ -80,19 +84,14 @@ class PostViewSet(viewsets.ViewSet):
        
         title = request.data.get("title")
         publication_date = request.data.get("publication_date")
-        # image_url = request.data.get("image_url")
+        image_url = request.data.get("image_url")
+        affliate = request.data.get("affliate")
         content = request.data.get("content")
         approved = request.data.get("approved")
         area_id = request.data.get("area")
         area = Area.objects.get(pk=area_id)
        
 
-        # try:
-        #     area = Area.objects.get(pk=area_id)
-        # except Area.DoesNotExist:
-        #     return Response({"error": "Invalid area specified"}, status=status.HTTP_400_BAD_REQUEST)
-
-        
         # Create a post database row first, so you have a
         # primary key to work with
         post = Post.objects.create(
@@ -100,7 +99,8 @@ class PostViewSet(viewsets.ViewSet):
           
             title=title,
             publication_date=publication_date,
-            # image_url=image_url,
+            image_url=image_url,
+            affliate=affliate,
             content=content,
             approved=approved,
             area=area,
@@ -125,10 +125,11 @@ class PostViewSet(viewsets.ViewSet):
                 
                 post.title = serializer.validated_data["title"]
                 # post.publication_date = serializer.validated_data["publication_date"]
-                # post.image_url = serializer.validated_data["image_url"]
+                post.affliate = serializer.validated_data["affliate"]
+                post.image_url = serializer.validated_data["image_url"]
                 post.content = serializer.validated_data["content"]
                 post.approved = serializer.validated_data["approved"]
-                post.approved = serializer.validated_data["area"]
+                post.area = serializer.validated_data["area"]
                 post.save()
 
                 skill_ids = request.data.get("skills", [])

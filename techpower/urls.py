@@ -28,6 +28,9 @@ router = DefaultRouter(trailing_slash=False)
 router.register(r"posts", PostViewSet, "post")
 router.register(r"skills", SkillViewSet, "skills")
 router.register(r"areas", AreaViewSet, "areas")
+router.register(r"techusers", UserViewSet, "techusers")
+
+# router.register(r"users", UserViewSet, "users")
 
 urlpatterns = [
     path("", include(router.urls)),
