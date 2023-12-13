@@ -26,6 +26,22 @@ class TechUserSerializer(serializers.ModelSerializer):
 class UserViewSet(viewsets.ViewSet):
     queryset = User.objects.all()
     permission_classes = [permissions.AllowAny]
+    
+    @action(detail=False, methods=["get"], url_path="techusers")
+    def get_tech_users(self, request):
+        # Ensure the user is authenticated
+        if not request.user.is_authenticated:
+            return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # Filter TechUser objects for the current authenticated user
+        tech_user = TechUser.objects.filter(user=request.user).first()
+
+        # Check if the TechUser exists
+        if tech_user:
+            serializer = TechUserSerializer(tech_user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "TechUser not found"}, status=status.HTTP_404_NOT_FOUND)
 
     @action(detail=False, methods=["post"], url_path="register")
     def register_account(self, request):
@@ -42,7 +58,6 @@ class UserViewSet(viewsets.ViewSet):
             tech_user = TechUser.objects.create(
                 user=user,
                 active=True,
-                
                 bio= request.data.get("bio"),
             )
             token, created = Token.objects.get_or_create(user=user)
