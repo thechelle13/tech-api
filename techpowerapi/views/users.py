@@ -83,6 +83,18 @@ class UserViewSet(viewsets.ViewSet):
 
         except User.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+    def destroy(self, request, pk=None):
+        try:
+            user_instance = User.objects.get(pk=pk)
+
+            self.check_object_permissions(request, user_instance)
+
+            user_instance.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        except User.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
     @action(detail=False, methods=["post"], url_path="register")
     def register_account(self, request):
